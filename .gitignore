@@ -2,3 +2,4 @@ data/raw
 data/processed
 data/test
 data/training
+venv/
