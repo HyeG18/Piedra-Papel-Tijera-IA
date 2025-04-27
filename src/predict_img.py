@@ -4,7 +4,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
 # Ruta al modelo guardado
-MODEL_PATH = os.path.abspath("../models/piedra_papel_tijera_model.keras")
+MODEL_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "../models/piedra_papel_tijera_model.keras"))
 
 # Dimensiones esperadas de las imágenes por el modelo
 IMG_HEIGHT = 20
@@ -50,7 +50,7 @@ def predict_image(model, image_path):
 
 def main():
     # Ruta a la imagen que se desea predecir
-    IMAGE_PATH = os.path.abspath("src/predict/papel.jpeg")
+    IMAGE_PATH = os.path.abspath("src/predict/prueba piedra.jpg")
 
     # Verificar si la imagen existe
     if not os.path.exists(IMAGE_PATH):
