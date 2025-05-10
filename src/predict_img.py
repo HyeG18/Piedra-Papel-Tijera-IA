@@ -52,7 +52,6 @@ def predict_image(model, image_path):
     """Realiza una predicción sobre una imagen y muestra las probabilidades."""
     img_array = preprocess_image(image_path)
     predictions = model.predict(img_array)
-    print(predictions)
     predicted_class = np.argmax(predictions, axis=1)[0]
     probabilities = predictions[0]
 
@@ -63,8 +62,10 @@ def predict_image(model, image_path):
         print(f"  {label}: {prob:.4f}")
 
 def main():
-    # Ruta a la imagen que se desea predecir
-    IMAGE_PATH = os.path.abspath("src/predict/papel.jpeg")
+    # Ruta a la carpeta predict y a la imagen que se desea predecir
+    PREDICT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), "predict"))
+    IMAGE_NAME = "papel.jpeg"  # Cambia esto al nombre de tu imagen
+    IMAGE_PATH = os.path.join(PREDICT_FOLDER, IMAGE_NAME)
 
     # Verificar si la imagen existe
     if not os.path.exists(IMAGE_PATH):
