@@ -12,7 +12,7 @@ IMG_HEIGHT = 20
 IMG_WIDTH = 30
 
 # Etiquetas de las clases
-CLASS_LABELS = ["Rock", "Paper", "Scissors"]
+CLASS_LABELS = ["Rock", "Paper", "Scissors", "Nothing"]
 
 def load_trained_model(model_path):
     """Carga el modelo entrenado desde la ruta especificada."""
@@ -64,7 +64,7 @@ def predict_image(model, image_path):
 def main():
     # Ruta a la carpeta predict y a la imagen que se desea predecir
     PREDICT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), "predict"))
-    IMAGE_NAME = "tijeraYo.jpg"  # Cambia esto al nombre de tu imagen
+    IMAGE_NAME = "nadaYo2.jpg"  # Cambia esto al nombre de tu imagen
     IMAGE_PATH = os.path.join(PREDICT_FOLDER, IMAGE_NAME)
 
     # Verificar si la imagen existe
