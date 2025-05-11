@@ -64,7 +64,7 @@ def predict_image(model, image_path):
 def main():
     # Ruta a la carpeta predict y a la imagen que se desea predecir
     PREDICT_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), "predict"))
-    IMAGE_NAME = "papel.jpeg"  # Cambia esto al nombre de tu imagen
+    IMAGE_NAME = "tijeraYo.jpg"  # Cambia esto al nombre de tu imagen
     IMAGE_PATH = os.path.join(PREDICT_FOLDER, IMAGE_NAME)
 
     # Verificar si la imagen existe
