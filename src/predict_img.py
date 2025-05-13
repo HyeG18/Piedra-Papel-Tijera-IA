@@ -12,7 +12,7 @@ IMG_HEIGHT = 20
 IMG_WIDTH = 30
 
 # Etiquetas de las clases
-CLASS_LABELS = ["Rock", "Paper", "Scissors", "Nothing"]
+CLASS_LABELS = ["Paper", "Rock", "Scissors", "Nothing"]
 
 def load_trained_model(model_path):
     """Carga el modelo entrenado desde la ruta especificada."""

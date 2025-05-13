@@ -34,12 +34,12 @@ def determinar_ganador(jugador, cpu):
             return msgJugador
 
     if jugador == "Papel":
-        if cpu == "Tijera":
+        if cpu == "Tijeras":
             return msgCpu
         else:
             return msgJugador
 
-    if jugador == "Tijera":
+    if jugador == "Tijeras":
         if cpu == "Piedra":
             return msgCpu
         else:
@@ -93,8 +93,27 @@ while True:
     rect_cpu_x2 = rect_cpu_x1 + rect_width
     rect_cpu_y2 = rect_cpu_y1 + rect_height
 
+    # Dibujar los recuadros para el jugador y la CPU
     cv2.rectangle(frame, (rect_player_x1, rect_player_y1), (rect_player_x2, rect_player_y2), (255, 255, 255), 2)
     cv2.rectangle(frame, (rect_cpu_x1, rect_cpu_y1), (rect_cpu_x2, rect_cpu_y2), (255, 255, 255), 2)
+
+   # Agregar texto "Jugador" encima del recuadro del jugador
+    jugador_label = "Jugador"
+    jugador_font_scale = 1.5  # Aumentar el tamaño del texto
+    jugador_thickness = 3     # Aumentar el grosor del texto
+    jugador_text_size = cv2.getTextSize(jugador_label, font, jugador_font_scale, jugador_thickness)[0]
+    jugador_text_x = rect_player_x1 + (rect_width - jugador_text_size[0]) // 2
+    jugador_text_y = rect_player_y1 - 20  # Un poco encima del recuadro
+    cv2.putText(frame, jugador_label, (jugador_text_x, jugador_text_y), font, jugador_font_scale, (0, 255, 0), jugador_thickness, cv2.LINE_AA)
+
+    # Agregar texto "CPU" encima del recuadro de la CPU
+    cpu_label = "CPU"
+    cpu_font_scale = 1.5  # Aumentar el tamaño del texto
+    cpu_thickness = 3     # Aumentar el grosor del texto
+    cpu_text_size = cv2.getTextSize(cpu_label, font, cpu_font_scale, cpu_thickness)[0]
+    cpu_text_x = rect_cpu_x1 + (rect_width - cpu_text_size[0]) // 2
+    cpu_text_y = rect_cpu_y1 - 20  # Un poco encima del recuadro
+    cv2.putText(frame, cpu_label, (cpu_text_x, cpu_text_y), font, cpu_font_scale, (0, 0, 255), cpu_thickness, cv2.LINE_AA)
 
     roi = frame[rect_player_y1:rect_player_y2, rect_player_x1:rect_player_x2]
 
@@ -118,7 +137,7 @@ while True:
             text_size = cv2.getTextSize(contador_text, contador_font, contador_font_scale, contador_thickness)[0]
             text_x = (width - text_size[0]) // 2
             text_y = (height + text_size[1]) // 2
-            cv2.putText(frame, contador_text, (text_x, text_y), contador_font, contador_font_scale, (0, 0, 0), contador_thickness, cv2.LINE_AA)
+            cv2.putText(frame, contador_text, (text_x, text_y), contador_font, contador_font_scale, (255, 255, 255), contador_thickness, cv2.LINE_AA)
 
         # Realizar la predicción solo una vez por ronda
         if elapsed_time > 4.5 and not prev_jugada:
@@ -134,7 +153,7 @@ while True:
             os.remove(temp_image_path)
 
             if nombre_jugada_jugador != "Ninguno" and nombre_jugada_jugador != "Inicio":
-                nombre_jugada_cpu = choice(["Piedra", "Papel", "Tijera"])
+                nombre_jugada_cpu = choice(["Piedra", "Papel", "Tijeras"])
                 nombre_ganador = determinar_ganador(nombre_jugada_jugador, nombre_jugada_cpu)
                 if nombre_ganador == "Ganaste":
                     victorias += 1
@@ -154,7 +173,7 @@ while True:
             prev_jugada = False  # Permitir una nueva jugada
 
         # Mostrar resultados y estadísticas
-        if nombre_jugada_cpu in ["Piedra", "Papel", "Tijera"]:
+        if nombre_jugada_cpu in ["Piedra", "Papel", "Tijeras"]:
             ruta_imagen = f"imagenes/{nombre_jugada_cpu.lower()}.png"
             imagen_cpu = cv2.imread(ruta_imagen)
 
